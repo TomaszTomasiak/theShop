@@ -1,11 +1,9 @@
 package com.theshop.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +19,11 @@ public class User {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+    @NotNull
     @Column(name="first_name")
     private String firstName;
 
+    @NotNull
     @Column(name="last_name")
     private String lastName;
 
@@ -33,14 +33,14 @@ public class User {
     @Column(name="phone")
     private String phoneNumber;
 
-    @Column(name="password")
+    //@Column(name="password")
     private String password;
 
     @Builder.Default
     @OneToMany(
-            targetEntity= Order.class,
-            mappedBy="user",
-            fetch=FetchType.LAZY
-    )
+            targetEntity = Order.class,
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch=FetchType.LAZY)
     private List<Order> orders = new ArrayList<>();
 }

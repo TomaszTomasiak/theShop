@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,15 +19,17 @@ import javax.persistence.*;
 public class Item {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @NotNull
+    @Column(name = "item_id", unique = true)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="cart_Id")
-    private Cart cart;
-
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
     private Product product;
 
-    @Column(name="quantity")
     private int quantity;
+
+    @Builder.Default
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "items")
+    private List<Cart> carts = new ArrayList<>();
 }

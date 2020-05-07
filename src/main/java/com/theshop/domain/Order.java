@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -18,25 +19,20 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "order_id")
     private Long id;
 
-    private String number;
+    @Column(name = "date_of_order")
+    private LocalDate ordered;
 
-    private LocalDate orderDate;
-
-    private LocalDate requiredDate;
-
-    private LocalDate shippedDate;
-
-    private String comments;
-
-
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name="cart_id")
     private Cart cart;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    private BigDecimal totalValue;
+    private boolean isCompleted;
 }

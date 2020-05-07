@@ -24,10 +24,12 @@ public class ProductGroup {
     @Column(name = "name")
     private String name;
 
+    @Builder.Default
     @OneToMany(
             targetEntity = Product.class,
             mappedBy = "group",
-            fetch = FetchType.LAZY
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
     )
     List<Product> products = new ArrayList<>();
 }

@@ -17,10 +17,6 @@ public class CartDto {
 
     private Long id;
 
-    private Long userId;
-
     @Builder.Default
     private List<Item> items = new ArrayList<>();
-
-    private Long orderId;
 }

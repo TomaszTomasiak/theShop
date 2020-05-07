@@ -6,33 +6,31 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "carts")
-public class Cart implements Serializable {
+public class Cart {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
+    @Column(name = "cart_id", unique = true)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="userId")
-    private User user;
-
     @Builder.Default
-    @OneToMany(
-            targetEntity = Item.class,
-            mappedBy = "cart",
-            cascade = CascadeType.MERGE,
-            fetch = FetchType.LAZY
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "items_on_cart",
+            joinColumns = @JoinColumn(name = "cart_id", referencedColumnName = "cart_id"),
+            inverseJoinColumns = @JoinColumn(name ="item_id", referencedColumnName = "item_id")
     )
-    private List<Item> orderItems = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
 
-    @OneToOne(mappedBy = "cart", fetch = FetchType.LAZY)
-    private Order order;
 }
