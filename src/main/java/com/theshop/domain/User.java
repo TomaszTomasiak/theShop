@@ -33,7 +33,7 @@ public class User {
     @Column(name="phone")
     private String phoneNumber;
 
-    //@Column(name="password")
+    @Column(name="password")
     private String password;
 
     @Builder.Default

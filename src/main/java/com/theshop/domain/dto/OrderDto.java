@@ -18,24 +18,16 @@ public class OrderDto implements Serializable {
 
     private Long id;
 
-    private String number;
-
     @JsonFormat(pattern="yyyy-MM-dd")
-    private LocalDate orderDate;
-
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private LocalDate requiredDate;
-
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private LocalDate shippedDate;
+    private LocalDate ordered;
 
     private String comments;
-
-    private int status;
-
-    private BigDecimal totalCost;
 
     private Long cartId;
 
     private Long userId;
+
+    private BigDecimal totalValue;
+
+    boolean isCompleted;
 }

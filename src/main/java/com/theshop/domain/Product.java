@@ -39,6 +39,8 @@ public class Product {
     @JoinColumn(name="group_id")
     private ProductGroup group;
 
+    private boolean available;
+
     @Builder.Default
     @OneToMany(
             targetEntity = Item.class,
@@ -47,6 +49,10 @@ public class Product {
             fetch = FetchType.LAZY)
     private List<Item> items = new ArrayList<>();
 
-    private boolean available;
+
+
+//    public boolean isAvailable() {
+//        return available;
+//    }
 
 }

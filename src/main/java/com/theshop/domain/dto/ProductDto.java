@@ -13,14 +13,9 @@ import java.math.BigDecimal;
 @Builder
 public class ProductDto {
     private Long id;
-
     private String name;
-
-    private BigDecimal price;
-
+    private double price;
     private String description;
-
     private Long groupId;
-
     private boolean available;
 }

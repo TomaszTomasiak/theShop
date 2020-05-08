@@ -16,7 +16,5 @@ import java.util.List;
 public class CartDto {
 
     private Long id;
-
-    @Builder.Default
-    private List<Item> items = new ArrayList<>();
+    private List<Item> items;
 }

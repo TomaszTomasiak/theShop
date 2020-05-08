@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -25,6 +26,9 @@ public class Order {
     @Column(name = "date_of_order")
     private LocalDate ordered;
 
+    @Column(name = "comments")
+    private String comments;
+
     @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name="cart_id")
     private Cart cart;
@@ -34,5 +38,6 @@ public class Order {
     private User user;
 
     private BigDecimal totalValue;
+
     private boolean isCompleted;
 }
