@@ -11,5 +11,8 @@ import java.util.List;
 @Repository
 public interface ProductDao extends CrudRepository<Product, Long> {
 
+    @Override
+    List<Product> findAll();
+
     List<Product> findByName(String name);
 }
