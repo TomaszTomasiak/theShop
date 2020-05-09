@@ -29,5 +29,5 @@ public class OrderDto implements Serializable {
 
     private BigDecimal totalValue;
 
-    boolean isCompleted;
+    private boolean isCompleted;
 }

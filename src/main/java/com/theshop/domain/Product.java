@@ -49,8 +49,6 @@ public class Product {
             fetch = FetchType.LAZY)
     private List<Item> items = new ArrayList<>();
 
-
-
 //    public boolean isAvailable() {
 //        return available;
 //    }

@@ -29,7 +29,7 @@ public class Order {
     @Column(name = "comments")
     private String comments;
 
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name="cart_id")
     private Cart cart;
 

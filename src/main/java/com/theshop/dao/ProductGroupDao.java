@@ -13,6 +13,4 @@ public interface ProductGroupDao extends CrudRepository<ProductGroup, Long> {
 
     @Override
     List<ProductGroup> findAll();
-
-
 }

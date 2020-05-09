@@ -17,7 +17,7 @@ public class ProductGroupMapper {
         return groupBean;
     }
 
-    public ProductGroupDto mapToProductGroup(final ProductGroup productGroup) {
+    public ProductGroupDto mapToProductGroupDto(final ProductGroup productGroup) {
         return new ProductGroupDto(
                 productGroup.getGroupId(),
                 productGroup.getName()
@@ -30,9 +30,9 @@ public class ProductGroupMapper {
                 .collect(Collectors.toList());
     }
 
-    public List<ProductGroupDto> mapToProductDtoList(final List<ProductGroup> productGroupList) {
+    public List<ProductGroupDto> mapToProductGroupDtoList(final List<ProductGroup> productGroupList) {
         return productGroupList.stream()
-                .map(this::mapToProductGroup)
+                .map(this::mapToProductGroupDto)
                 .collect(Collectors.toList());
     }
 }

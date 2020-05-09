@@ -1,6 +1,5 @@
 package com.theshop.domain.dto;
 
-import com.theshop.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

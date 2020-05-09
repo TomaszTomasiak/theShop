@@ -24,13 +24,13 @@ public class CartMapper {
         );
     }
 
-    public List<CartDto> mapToListCartDto(final List<Cart> cartList){
+    public List<CartDto> mapToCartDtoList(final List<Cart> cartList){
         return cartList.stream()
                 .map(cart -> mapToCartDto(cart))
                 .collect(Collectors.toList());
     }
 
-    public List<Cart> mapToListCart(final List<CartDto> cartDtoList) {
+    public List<Cart> mapToCartList(final List<CartDto> cartDtoList) {
        return cartDtoList.stream()
                .map(cartDto -> mapToCart(cartDto))
                .collect(Collectors.toList());
