@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +41,7 @@ public class OrderDaoTestSuite {
                 .name("AGD")
                 .build();
         productGroupDao.save(productGroupTest);
-        long groupId = productGroupTest.getGroupId();
+        long groupId = productGroupTest.getId();
 
         Product productTest = Product.builder()
                 .name("toster")
@@ -51,7 +50,7 @@ public class OrderDaoTestSuite {
                 .price(254.9)
                 .build();
         productDao.save(productTest);
-        long productId = productTest.getProductId();
+        long productId = productTest.getId();
 
         User userTest = User.builder()
                 .firstName("John")

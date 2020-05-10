@@ -34,15 +34,15 @@ public class ProductGroupServiceTestSuite {
 
         //When
         groupService.saveGroup(group);
-        tempGroup = groupService.getGroup(group.getGroupId()).orElseThrow(NotFoundException::new);
+        tempGroup = groupService.getGroup(group.getId()).orElseThrow(NotFoundException::new);
         groups = groupService.getGroups();
         long afterNumOfRecords =  groupService.getGroups().size();
         //Then
-        assertEquals(group.getGroupId(), tempGroup.getGroupId());
+        assertEquals(group.getId(), tempGroup.getId());
         assertEquals(group.getName(), tempGroup.getName());
         assertEquals(1, afterNumOfRecords - prevNumOfRecords);
         //CleanUp
-        groupService.deleteGroup(group.getGroupId());
+        groupService.deleteGroup(group.getId());
     }
 
     @Test
@@ -54,16 +54,16 @@ public class ProductGroupServiceTestSuite {
         groupService.saveGroup(group);
 
         ProductGroup updatedGroup = new ProductGroup();
-        updatedGroup.setGroupId(group.getGroupId());
+        updatedGroup.setId(group.getId());
         updatedGroup.setName("Updated Group");
         groupService.saveGroup(updatedGroup);
         //When
-        tempGroup = groupService.getGroup(group.getGroupId()).orElseThrow(NotFoundException::new);
+        tempGroup = groupService.getGroup(group.getId()).orElseThrow(NotFoundException::new);
         //Then
         assertEquals("Updated Group", tempGroup.getName());
 
         //CleanUp
-        groupService.deleteGroup(group.getGroupId());
+        groupService.deleteGroup(group.getId());
     }
 
 }

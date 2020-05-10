@@ -39,12 +39,12 @@ public class OrderMapperTestSuite {
             .build();
 
     private ProductGroup group = ProductGroup.builder()
-            .groupId(1L)
+            .id(1L)
             .name("Test group")
             .build();
 
     private Product product = Product.builder()
-            .productId(1L)
+            .id(1L)
             .name("Shoes")
             .description("nice shoes")
             .price(364.90)

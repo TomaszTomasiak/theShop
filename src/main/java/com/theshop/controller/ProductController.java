@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/v1/theshop/products")
+@RestController
+@RequestMapping("api/v1/theshop/products")
 public class ProductController {
     @Autowired
     private ProductService service;
@@ -44,14 +44,14 @@ public class ProductController {
         return productDto;
     }
 
-    @PutMapping(name = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ProductDto updateProductById(@PathVariable("id") Long id, @RequestBody ProductDto productDto) {
         log.debug("REST request to update product with id: ", id);
         return mapper.mapToProductDto(service.saveProduct(mapper.mapToProduct(productDto)));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProductById(@PathVariable long id) {
+    public void deleteProductById(@PathVariable("id") long id) {
         log.debug("REST request to delete product with id: ", id);
         service.deleteProduct(id);
     }

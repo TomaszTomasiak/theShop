@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/v1/theshop/users")
 public class UserController {
     @Autowired
@@ -43,7 +43,7 @@ public class UserController {
         return userDto;
     }
 
-    @PutMapping(name = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public UserDto updateUserById(@PathVariable("id") Long id, @RequestBody UserDto userDto) {
         log.debug("REST request to update user with id: ", id);
         return mapper.mapToUserDto(service.saveUser(mapper.mapToUser(userDto)));

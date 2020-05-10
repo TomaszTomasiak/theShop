@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.*;
-import java.math.BigDecimal;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -37,9 +36,9 @@ public class ProductDaoTestSuite {
                 .build();
 
         //When
-        Long groupId = productGroup.getGroupId();
+        Long groupId = productGroup.getId();
         productDao.save(product);
-        Long productId = product.getProductId();
+        Long productId = product.getId();
 
         //Then
         assertEquals(1, productDao.findByName("toster").size());

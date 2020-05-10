@@ -1,5 +1,6 @@
 package com.theshop.mapper;
 
+import com.theshop.dao.OrderDao;
 import com.theshop.dao.ProductDao;
 import com.theshop.domain.Item;
 import com.theshop.domain.dto.ItemDto;
@@ -15,19 +16,24 @@ public class ItemMapper {
     @Autowired
     ProductDao productDao;
 
+    @Autowired
+    OrderDao orderDao;
+
     public Item mapToItem(final ItemDto itemDto) {
         Item itemBean = new Item();
         itemBean.setId(itemDto.getId());
         itemBean.setProduct(productDao.findById(itemDto.getId()).orElse(null));
         itemBean.setQuantity(itemDto.getQuantity());
+        itemBean.setOrder(orderDao.findById(itemDto.getId()).orElse(null));
         return itemBean;
     }
 
     public ItemDto mapToItemDto(final Item item) {
         return new ItemDto(
                 item.getId(),
-                item.getProduct().getProductId(),
-                item.getQuantity()
+                item.getProduct().getId(),
+                item.getQuantity(),
+                item.getOrder().getId()
         );
     }
 

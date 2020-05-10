@@ -23,15 +23,16 @@ public class OrderMapper {
     UserDao userDao;
 
     public Order mapToOrder(final OrderDto orderDto) {
-        return new Order(
-                orderDto.getId(),
-                orderDto.getOrdered(),
-                orderDto.getComments(),
-                cartDao.findCartById(orderDto.getCartId()),
-                userDao.findById(orderDto.getUserId()).orElse(null),
-                orderDto.getTotalValue(),
-                orderDto.isCompleted()
-        );
+        Order orderBean = new Order();
+
+        orderBean.setId(orderDto.getId());
+        orderBean.setOrdered(orderDto.getOrdered());
+        orderBean.setComments(orderDto.getComments());
+        orderBean.setCart(cartDao.findCartById(orderDto.getCartId()));
+        orderBean.setUser(userDao.findById(orderDto.getUserId()).orElse(null));
+        orderBean.setTotalValue(orderDto.getTotalValue());
+        orderBean.setCompleted(orderDto.isCompleted());
+       return orderBean;
     }
 
     public OrderDto mapToOrderDto(final Order order) {

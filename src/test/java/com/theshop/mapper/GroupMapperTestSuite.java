@@ -23,7 +23,7 @@ public class GroupMapperTestSuite {
 
     private ProductGroup createGroup() {
         return ProductGroup.builder()
-                .groupId(1L)
+                .id(1L)
                 .name("Test group")
                 .build();
 
@@ -45,7 +45,7 @@ public class GroupMapperTestSuite {
 
         //When
         ProductGroup group = groupMapper.mapToProductGroup(groupDto);
-        long id = group.getGroupId();
+        long id = group.getId();
 
         //Then
         assertNotNull(group);
@@ -71,12 +71,12 @@ public class GroupMapperTestSuite {
     public void testMapToGroupDtoList() {
         //Given
         ProductGroup group1 = ProductGroup.builder()
-                .groupId(1L)
+                .id(1L)
                 .name("Test group")
                 .build();
 
         ProductGroup group2 = ProductGroup.builder()
-                .groupId(2L)
+                .id(2L)
                 .name("Test group 2")
                 .build();
 

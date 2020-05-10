@@ -8,13 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/v1/theshop/items")
+@RestController
+@RequestMapping("api/v1/theshop/items")
 public class ItemController {
     @Autowired
     private ItemService service;
@@ -43,14 +42,14 @@ public class ItemController {
         return itemDto;
     }
 
-    @PutMapping(name = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ItemDto updateItemById(@PathVariable("id") Long id, @RequestBody ItemDto itemDto) {
         log.debug("REST request to update item with id: ", id);
         return mapper.mapToItemDto(service.saveItem(mapper.mapToItem(itemDto)));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteItemById(@PathVariable long id) {
+    public void deleteItemById(@PathVariable("id") long id) {
         log.debug("REST request to delete item with id: ", id);
         service.deleteItem(id);
     }

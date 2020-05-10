@@ -22,7 +22,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "product_id", unique = true)
-    private Long productId;
+    private Long id;
 
     @Column(name="name")
     private String name;
@@ -52,5 +52,4 @@ public class Product {
 //    public boolean isAvailable() {
 //        return available;
 //    }
-
 }

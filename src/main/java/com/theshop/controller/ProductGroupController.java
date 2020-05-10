@@ -8,13 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/v1/theshop/groups")
+@RestController
+@RequestMapping("api/v1/theshop/groups")
 public class ProductGroupController {
 
     @Autowired
@@ -23,7 +22,7 @@ public class ProductGroupController {
     @Autowired
     private ProductGroupMapper mapper;
 
-    private final Logger log = LoggerFactory.getLogger(ProductGroupController.class);
+    private final static Logger log = LoggerFactory.getLogger(ProductGroupController.class);
 
     @GetMapping
     public List<ProductGroupDto> getAllGroups(){
@@ -31,7 +30,7 @@ public class ProductGroupController {
         return mapper.mapToProductGroupDtoList(service.getGroups());
     }
 
-    @GetMapping ("/{id}")
+    @GetMapping (value ="/{id}")
     public ProductGroupDto getGroup(@PathVariable("id") long id) throws NotFoundException {
         log.debug("REST request to get group with id: ", id);
         return mapper.mapToProductGroupDto(service.getGroup(id).orElseThrow(NotFoundException::new));
@@ -44,14 +43,14 @@ public class ProductGroupController {
         return productGroupDto;
     }
 
-    @PutMapping(name = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ProductGroupDto updateGroupById(@PathVariable("id") Long id, @RequestBody ProductGroupDto productGroupDto) {
         log.debug("REST request to update group with id: ", id);
         return mapper.mapToProductGroupDto(service.saveGroup(mapper.mapToProductGroup(productGroupDto)));
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteGroupById(@PathVariable long id) {
+    @DeleteMapping(value = "/{id}")
+    public void deleteGroupById(@PathVariable("id") long id) {
         log.debug("REST request to delete group with id: ", id);
         service.deleteGroup(id);
         //do zrobienia ProductGroupService.deleteGroupAndImputeDefoultGroup()

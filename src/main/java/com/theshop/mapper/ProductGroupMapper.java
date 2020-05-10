@@ -12,14 +12,14 @@ public class ProductGroupMapper {
 
     public ProductGroup mapToProductGroup(final ProductGroupDto productGroupDto) {
         ProductGroup groupBean = new ProductGroup();
-        groupBean.setGroupId(productGroupDto.getId());
+        groupBean.setId(productGroupDto.getId());
         groupBean.setName(productGroupDto.getName());
         return groupBean;
     }
 
     public ProductGroupDto mapToProductGroupDto(final ProductGroup productGroup) {
         return new ProductGroupDto(
-                productGroup.getGroupId(),
+                productGroup.getId(),
                 productGroup.getName()
         );
     }

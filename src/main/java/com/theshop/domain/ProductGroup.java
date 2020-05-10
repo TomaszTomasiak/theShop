@@ -19,7 +19,7 @@ public class ProductGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long groupId;
+    private Long id;
 
     @Column(name = "name")
     private String name;

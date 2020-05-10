@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.math.BigDecimal;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,13 +22,13 @@ public class ProductMapperTestSuite {
     ProductMapper productMapper;
 
     private ProductGroup group = ProductGroup.builder()
-                .groupId(1L)
+                .id(1L)
                 .name("Test group")
                 .build();
 
     private Product product() {
         return Product.builder()
-                .productId(1L)
+                .id(1L)
                 .name("Shoes")
                 .description("nice shoes")
                 .price(364.90)
@@ -54,7 +52,7 @@ public class ProductMapperTestSuite {
         //When
         Product resultProduct = productMapper.mapToProduct(productDto());
         //Then
-        assertEquals(productDto().getId(), resultProduct.getProductId());
+        assertEquals(productDto().getId(), resultProduct.getId());
         assertEquals(productDto().getPrice(), resultProduct.getPrice(), 0);
         assertEquals(productDto().getName(), resultProduct.getName());
     }
@@ -65,7 +63,7 @@ public class ProductMapperTestSuite {
         //When
         ProductDto productDto = productMapper.mapToProductDto(product());
         //Then
-        assertEquals(product().getProductId(), productDto.getId());
+        assertEquals(product().getId(), productDto.getId());
         assertEquals(product().getName(), productDto.getName());
     }
 
@@ -87,7 +85,7 @@ public class ProductMapperTestSuite {
         //Then
         assertEquals(productDtos.size(), productList.size());
         assertEquals(productDto.getName(), product.getName());
-        assertEquals(productDto.getId(), product.getProductId());
+        assertEquals(productDto.getId(), product.getId());
     }
 
     @Test
@@ -108,6 +106,6 @@ public class ProductMapperTestSuite {
         //Then
         assertEquals(products.size(),productDtos.size());
         assertEquals(productDto.getName(), product.getName());
-        assertEquals(productDto.getId(), product.getProductId());
+        assertEquals(productDto.getId(), product.getId());
     }
 }

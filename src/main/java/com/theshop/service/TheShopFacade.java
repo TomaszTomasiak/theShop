@@ -31,7 +31,7 @@ public class TheShopFacade {
             throw new IllegalArgumentException("Passed arguments are equal null");
         }
         for (int i = 0; i < itemList.size(); i++) {
-            Optional<Product> product = productService.getProduct(itemList.get(i).getProduct().getProductId());
+            Optional<Product> product = productService.getProduct(itemList.get(i).getProduct().getId());
             if (!product.isPresent()) {
                 throw new CartExceptionNotFound(CartExceptionNotFound.ERR_PRODUCT_NOT_FOUND);
             }

@@ -24,7 +24,7 @@ public class ProductGroupDaoTestSuite {
 
         //When
         productGroupDao.save(productGroup);
-        Long id = productGroup.getGroupId();
+        Long id = productGroup.getId();
 
         //Then
         assertEquals("food", productGroup.getName());

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -40,4 +42,12 @@ public class Order {
     private BigDecimal totalValue;
 
     private boolean isCompleted;
+
+    @Builder.Default
+    @OneToMany(
+            targetEntity = Item.class,
+            mappedBy = "order",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    private List<Item> items = new ArrayList<>();
 }
