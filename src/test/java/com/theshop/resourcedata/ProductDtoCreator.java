@@ -1,4 +1,4 @@
-package com.theshop.controller.resourcedata;
+package com.theshop.resourcedata;
 
 import com.theshop.domain.dto.ProductDto;
 

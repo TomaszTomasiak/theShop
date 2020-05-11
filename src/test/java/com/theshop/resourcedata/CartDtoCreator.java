@@ -1,4 +1,4 @@
-package com.theshop.controller.resourcedata;
+package com.theshop.resourcedata;
 
 import com.theshop.domain.dto.CartDto;
 
@@ -13,9 +13,9 @@ public class CartDtoCreator {
                 .build();
     }
 
-    public static CartDto updatedCartDtoCreator(long id) {
+    public static CartDto updatedCartDtoCreator() {
         return CartDto.builder()
-                .id(id)
+                .id(UPDATED_CART_ID)
                 .build();
     }
 

@@ -1,4 +1,4 @@
-package com.theshop.controller.resourcedata;
+package com.theshop.resourcedata;
 
 import com.theshop.domain.dto.UserDto;
 
@@ -6,8 +6,6 @@ public class UserDtoCreator {
 
     public static long USER_ID = 5L;
     public static long UPDATED_USER_ID = 87L;
-
-
     public static String FIRST_NAME = "John";
     public static String UPDATED_NAME = "Maryla";
     public static String LAST_NAME = "Rambo";
@@ -32,7 +30,7 @@ public class UserDtoCreator {
 
     public static UserDto updatedUserDtoCreator() {
         return UserDto.builder()
-                .id(USER_ID)
+                .id(UPDATED_USER_ID)
                 .firstName(UPDATED_NAME)
                 .lastName(UPDATED_LAST_NAME)
                 .mailAdress(UPDATED_MAIL)

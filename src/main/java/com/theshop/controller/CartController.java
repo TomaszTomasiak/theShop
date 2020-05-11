@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/theshop/carts")
+@RequestMapping("api/v1/theshop/carts")
 public class CartController {
     @Autowired
     private CartService service;
@@ -49,7 +49,7 @@ public class CartController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCartById(@PathVariable long id) {
+    public void deleteCartById(@PathVariable("id") long id) {
         log.debug("REST request to delete cart with id: ", id);
         service.deleteCart(id);
     }

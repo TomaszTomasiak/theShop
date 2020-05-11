@@ -1,4 +1,4 @@
-package com.theshop.controller.resourcedata;
+package com.theshop.resourcedata;
 
 import com.theshop.domain.dto.OrderDto;
 
@@ -25,7 +25,7 @@ public class OrderDtoCreator {
     public static OrderDto orderDtoCreator() {
         return OrderDto.builder()
                 .id(ORDER_ID)
-                .ordered(ORDERED)
+                //.ordered(ORDERED)
                 .comments(COMMENTS)
                 .cartId(CART_ID)
                 .userId(USER_ID)
@@ -34,13 +34,13 @@ public class OrderDtoCreator {
                 .build();
     }
 
-    public static OrderDto updatedOrderDtoCreator(long id) {
+    public static OrderDto updatedOrderDtoCreator() {
         return OrderDto.builder()
-                .id(id)
-                .ordered(UPDATED_ORDERED)
+                .id(ORDER_ID)
+                //.ordered(ORDERED)
                 .comments(UPDATED_COMMENTS)
-                .cartId(UPDATED_CART_ID)
-                .userId(UPDATED_USER_ID)
+                .cartId(CART_ID)
+                .userId(USER_ID)
                 .totalValue(UPDATED_TOTAL_VALUE)
                 .isCompleted(UPDATED_IS_COMPLITED)
                 .build();

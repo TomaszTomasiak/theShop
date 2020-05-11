@@ -8,13 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/theshop/orders")
+@RequestMapping("api/v1/theshop/orders")
 public class OrderController {
     @Autowired
     private OrderService service;
@@ -44,13 +43,13 @@ public class OrderController {
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public OrderDto updateOrderById(@PathVariable("id") Long id, @RequestBody OrderDto orderDto) {
+    public OrderDto updateOrderById(@PathVariable("id") long id, @RequestBody OrderDto orderDto) {
         log.debug("REST request to update order with id: ", id);
         return mapper.mapToOrderDto(service.saveOrder(mapper.mapToOrder(orderDto)));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteOrderById(@PathVariable long id) {
+    public void deleteOrderById(@PathVariable("id") long id) {
         log.debug("REST request to delete order with id: ", id);
         service.deleteOrder(id);
     }

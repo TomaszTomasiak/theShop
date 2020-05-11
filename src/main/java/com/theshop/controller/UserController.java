@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/theshop/users")
+@RequestMapping("api/v1/theshop/users")
 public class UserController {
     @Autowired
     private UserService service;
@@ -50,7 +50,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUserById(@PathVariable long id) {
+    public void deleteUserById(@PathVariable("id") long id) {
         log.debug("REST request to delete user with id: ", id);
         service.deleteUser(id);
     }
