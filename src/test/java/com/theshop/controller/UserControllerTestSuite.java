@@ -49,7 +49,7 @@ public class UserControllerTestSuite {
         when(userController.getAllUsers()).thenReturn(userDtos);
 
         //When & Then
-        mockMvc.perform(get("/api/v1/theshop/users").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/v1/users").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$", hasSize(0)));
     }
@@ -62,7 +62,7 @@ public class UserControllerTestSuite {
         when(userController.getAllUsers()).thenReturn(userDtos);
 
         //When & Then
-        mockMvc.perform(get("/api/v1/theshop/users").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/v1/users").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].id", is(5)))
@@ -78,7 +78,7 @@ public class UserControllerTestSuite {
         when(userController.getUser(userDto.getId())).thenReturn(userDto);
 
         //When & Then
-        mockMvc.perform(get("/api/v1/theshop/users/"+userDto.getId()).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/v1/users/"+userDto.getId()).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.lastName", is(userDto.getLastName())))
                 .andExpect(jsonPath("$.phoneNumber", is(userDto.getPhoneNumber())))
@@ -93,7 +93,7 @@ public class UserControllerTestSuite {
         when(userController.getAllUsers()).thenReturn(userDtos);
 
         //When & Then
-        mockMvc.perform(delete("/api/v1/theshop/users/" + userDto.getId()).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete("/api/v1/users/" + userDto.getId()).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
@@ -109,7 +109,7 @@ public class UserControllerTestSuite {
         String jsonContent = gson.toJson(updatedUserDto);
 
         //When & Then
-        mockMvc.perform(put("/api/v1/theshop/users/"+userDto.getId())
+        mockMvc.perform(put("/api/v1/users/"+userDto.getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
@@ -128,7 +128,7 @@ public class UserControllerTestSuite {
         String jsonContent = gson.toJson(userDto);
 
         //When & Then
-        mockMvc.perform(post("/api/v1/theshop/users")
+        mockMvc.perform(post("/api/v1/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))

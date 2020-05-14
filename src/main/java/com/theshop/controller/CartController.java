@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/theshop/carts")
+@RequestMapping("api/v1/carts")
 public class CartController {
     @Autowired
     private CartService service;
@@ -54,3 +54,20 @@ public class CartController {
         service.deleteCart(id);
     }
 }
+/*
+@PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> addUpdateDeleteOrderItemsToCart(@PathVariable("id") Long cartId, @RequestBody CartDto cartDto) throws CartExceptionNotFound, UserException, NullArgumentException, CartExceptionBadRequest {
+        if(cartDto == null ^ cartId == null) {
+            throw new IllegalArgumentException("Passed arguments are equal null");
+        }
+        if(cartDto.getId() != cartId) {
+            throw new CartExceptionBadRequest(CartExceptionBadRequest.ERR_CART_PATH);
+        }
+        if(!cartService.exists(cartId)) {
+            throw new CartExceptionNotFound(CartExceptionNotFound.ERR_CART_NOT_FOUND);
+        }
+        cartDto.setId(cartId);
+        CartDto cartUpdated = shopServiceFacade.addOrderItemsToExistingCart(cartDto);
+        return new ResponseEntity<>(cartUpdated, HttpStatus.CREATED);
+    }
+ */

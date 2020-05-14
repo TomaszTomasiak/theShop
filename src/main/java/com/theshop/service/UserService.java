@@ -26,17 +26,17 @@ public class UserService {
     }
 
     public Optional<User> getUser(long id) {
-        log.debug("Request to get User with id = ", id);
+        log.debug("Request to get User with id: {}", id);
         return userDao.findById(id);
     }
 
     public User saveUser(User user) {
-        log.debug("Request to create User : ", user);
+        log.debug("Request to create User : {}", user);
         return userDao.save(user);
     }
 
     public void deleteUser(long id) {
-        log.debug("Request to delete User with id = ", id);
+        log.debug("Request to delete User with id : {}", id);
         userDao.deleteById(id);
     }
 }

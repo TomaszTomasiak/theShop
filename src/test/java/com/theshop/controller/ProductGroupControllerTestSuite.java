@@ -39,7 +39,7 @@ public class ProductGroupControllerTestSuite {
         when(productGroupController.getAllGroups()).thenReturn(productGroupDtos);
 
         //When & Then
-        mockMvc.perform(get("/api/v1/theshop/groups").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/v1/groups").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$", hasSize(0)));
     }
@@ -52,7 +52,7 @@ public class ProductGroupControllerTestSuite {
         when(productGroupController.getAllGroups()).thenReturn(productGroupDtos);
 
         //When & Then
-        mockMvc.perform(get("/api/v1/theshop/groups").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/v1/groups").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].id", is(15)))
@@ -66,7 +66,7 @@ public class ProductGroupControllerTestSuite {
         when(productGroupController.getGroup(15L)).thenReturn(productGroupDto);
 
         //When & Then
-        mockMvc.perform(get("/api/v1/theshop/groups/15").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/v1/groups/15").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", is(15)))
                 .andExpect(jsonPath("name", is("group name")));
@@ -80,7 +80,7 @@ public class ProductGroupControllerTestSuite {
         when(productGroupController.getAllGroups()).thenReturn(productGroupDtos);
 
         //When & Then
-        mockMvc.perform(delete("/api/v1/theshop/groups/15").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete("/api/v1/groups/15").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
@@ -98,7 +98,7 @@ public class ProductGroupControllerTestSuite {
         String jsonContent = gson.toJson(productGroupDtoUpdated);
 
         //When & Then
-        mockMvc.perform(put("/api/v1/theshop/groups/15")
+        mockMvc.perform(put("/api/v1/groups/15")
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
@@ -116,7 +116,7 @@ public class ProductGroupControllerTestSuite {
         String jsonContent = gson.toJson(productGroupDto);
 
         //When & Then
-        mockMvc.perform(post("/api/v1/theshop/groups")
+        mockMvc.perform(post("/api/v1/groups")
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))

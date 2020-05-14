@@ -49,7 +49,7 @@ public class OrderControllerTestSuite {
         when(orderController.getAllOrders()).thenReturn(orderDtos);
 
         //When & Then
-        mockMvc.perform(get("/api/v1/theshop/orders").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/v1/orders").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$", hasSize(0)));
     }
@@ -62,7 +62,7 @@ public class OrderControllerTestSuite {
         when(orderController.getAllOrders()).thenReturn(orderDtos);
 
         //When & Then
-        mockMvc.perform(get("/api/v1/theshop/orders").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/v1/orders").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].id", is(2)));
@@ -75,7 +75,7 @@ public class OrderControllerTestSuite {
         when(orderController.getOrder(orderDto.getId())).thenReturn(orderDto);
 
         //When & Then
-        mockMvc.perform(get("/api/v1/theshop/orders/" + orderDto.getId()).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/v1/orders/" + orderDto.getId()).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(2)));
     }
@@ -88,7 +88,7 @@ public class OrderControllerTestSuite {
         when(orderController.getAllOrders()).thenReturn(orderDtos);
 
         //When & Then
-        mockMvc.perform(delete("/api/v1/theshop/orders/" + orderDto.getId()).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete("/api/v1/orders/" + orderDto.getId()).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
@@ -104,7 +104,7 @@ public class OrderControllerTestSuite {
         String jsonContent = gson.toJson(updatedOrderDto);
 
         //When & Then
-        mockMvc.perform(put("/api/v1/theshop/orders/"+updatedOrderDto.getId())
+        mockMvc.perform(put("/api/v1/orders/"+updatedOrderDto.getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
@@ -122,7 +122,7 @@ public class OrderControllerTestSuite {
         String jsonContent = gson.toJson(orderDto);
 
         //When & Then
-        mockMvc.perform(post("/api/v1/theshop/orders")
+        mockMvc.perform(post("/api/v1/orders")
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))

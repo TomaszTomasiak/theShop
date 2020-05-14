@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/theshop/groups")
+@RequestMapping("api/v1/groups")
 public class ProductGroupController {
 
     @Autowired

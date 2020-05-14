@@ -2,7 +2,6 @@ package com.theshop.service;
 
 import com.theshop.dao.ProductDao;
 import com.theshop.domain.Product;
-import com.theshop.domain.ProductGroup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,27 +26,21 @@ public class ProductService {
     }
 
     public Optional<Product> getProduct(long id) {
-        log.debug("Request to get product with id : ", id);
+        log.debug("Request to get product with id : {}", id);
         return productDao.findById(id);
     }
 
     public Product saveProduct(Product product) {
-        log.debug("Request to add product: ", product);
+        log.debug("Request to add product: {}", product);
         return productDao.save(product);
     }
 
     public void deleteProduct(Long id) {
-        log.debug("Request to delete product with id : ", id);
+        log.debug("Request to delete product with id : {}", id);
         productDao.deleteById(id);
     }
 
 
-//    public void groupChangeIfGroupDeleted() {
-//        ProductGroup group = productGroupDao.findById(id).orElse(null);
-//
-//        List<Product> productList = productDao.findAll();
-//        productList.stream()
-//                .filter(product -> product.getGroup().equals(group))
-//                .forEach(product -> product.setGroup(null));
-//    }
+
+
 }

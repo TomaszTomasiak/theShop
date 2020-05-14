@@ -26,17 +26,17 @@ public class ItemService {
     }
 
     public Optional<Item> getItem(long id) {
-        log.debug("Request to get item with id = ", id);
+        log.debug("Request to get item with id: {}", id);
         return itemDao.findById(id);
     }
 
     public Item saveItem(Item item) {
-        log.debug("Request to create item: ", item);
+        log.debug("Request to create item: {}", item);
        return itemDao.save(item);
     }
 
     public void deleteItem(long id) {
-        log.debug("Request to delete item with id = ", id);
+        log.debug("Request to delete item with id: {}", id);
         itemDao.deleteById(id);
     }
 }

@@ -1,5 +1,6 @@
 package com.theshop.service;
 
+import com.theshop.dao.CartDao;
 import com.theshop.dao.OrderDao;
 import com.theshop.dao.UserDao;
 import com.theshop.domain.Cart;
@@ -28,28 +29,26 @@ public class OrderService {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private CartDao cartDao;
+
     public List<Order> getOrders() {
         log.debug("Request to get all orders");
         return orderDao.findAll();
     }
 
     public Optional<Order> getOrder(long id) {
-        log.debug("Request to get order with id: ", id);
+        log.debug("Request to get order with id: {}", id);
         return orderDao.findById(id);
     }
 
     public Order saveOrder(Order order) {
-//        order = Order.builder()
-//                .cart(cart)
-//                .user(userDao.findById(userId).orElse(new User()))
-//                .build();
-
-        log.debug("Request to create order: ", order);
+        log.debug("Request to create order: {}", order);
         return orderDao.save(order);
     }
 
     public void deleteOrder(long id) {
-        log.debug("Request to delete order with id: ", id);
+        log.debug("Request to delete order with id: {}", id);
         orderDao.deleteById(id);
     }
 }

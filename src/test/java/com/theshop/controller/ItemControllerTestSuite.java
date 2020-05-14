@@ -49,7 +49,7 @@ public class ItemControllerTestSuite {
         when(itemController.getAllItems()).thenReturn(itemDtos);
 
         //When & Then
-        mockMvc.perform(get("/api/v1/theshop/items").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/v1/items").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$", hasSize(0)));
     }
@@ -62,7 +62,7 @@ public class ItemControllerTestSuite {
         when(itemController.getAllItems()).thenReturn(itemDtos);
 
         //When & Then
-        mockMvc.perform(get("/api/v1/theshop/items").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/v1/items").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].id", is(5)))
@@ -78,7 +78,7 @@ public class ItemControllerTestSuite {
         when(itemController.getItem(itemDto.getId())).thenReturn(itemDto);
 
         //When & Then
-        mockMvc.perform(get("/api/v1/theshop/items/"+itemDto.getId()).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/v1/items/"+itemDto.getId()).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", is(5)))
                 .andExpect(jsonPath("quantity", is(itemDto.getQuantity())));
@@ -92,7 +92,7 @@ public class ItemControllerTestSuite {
         when(itemController.getAllItems()).thenReturn(itemDtos);
 
         //When & Then
-        mockMvc.perform(delete("/api/v1/theshop/items/" + itemDto.getId()).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete("/api/v1/items/" + itemDto.getId()).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
@@ -108,7 +108,7 @@ public class ItemControllerTestSuite {
         String jsonContent = gson.toJson(updatedItemDto);
 
         //When & Then
-        mockMvc.perform(put("/api/v1/theshop/items/"+itemDto.getId())
+        mockMvc.perform(put("/api/v1/items/"+itemDto.getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
@@ -127,7 +127,7 @@ public class ItemControllerTestSuite {
         String jsonContent = gson.toJson(itemDto);
 
         //When & Then
-        mockMvc.perform(post("/api/v1/theshop/items")
+        mockMvc.perform(post("/api/v1/items")
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
