@@ -31,26 +31,26 @@ public class ItemController {
 
     @GetMapping("/{id}")
     public ItemDto getItem(@PathVariable("id") long id) throws NotFoundException {
-        log.debug("REST request to get item with id: ", id);
+        log.debug("REST request to get item with id: {}", id);
         return mapper.mapToItemDto(service.getItem(id).orElseThrow(NotFoundException::new));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ItemDto createItem(@RequestBody ItemDto itemDto) {
-        log.debug("REST request to add new item: ", itemDto);
+        log.debug("REST request to add new item: {}", itemDto);
         service.saveItem(mapper.mapToItem(itemDto));
         return itemDto;
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ItemDto updateItemById(@PathVariable("id") Long id, @RequestBody ItemDto itemDto) {
-        log.debug("REST request to update item with id: ", id);
+        log.debug("REST request to update item with id: {}", id);
         return mapper.mapToItemDto(service.saveItem(mapper.mapToItem(itemDto)));
     }
 
     @DeleteMapping("/{id}")
     public void deleteItemById(@PathVariable("id") long id) {
-        log.debug("REST request to delete item with id: ", id);
+        log.debug("REST request to delete item with id: {}", id);
         service.deleteItem(id);
     }
 }

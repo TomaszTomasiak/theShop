@@ -31,26 +31,26 @@ public class OrderController {
 
     @GetMapping("/{id}")
     public OrderDto getOrder(@PathVariable("id") long id) throws NotFoundException {
-        log.debug("REST request to get order with id: ", id);
+        log.debug("REST request to get order with id: {}", id);
         return mapper.mapToOrderDto(service.getOrder(id).orElseThrow(NotFoundException::new));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public OrderDto createOrder(@RequestBody OrderDto orderDto) {
-        log.debug("REST request to create order: ", orderDto);
+    public OrderDto saveOrder(@RequestBody OrderDto orderDto) {
+        log.debug("REST request to create order: {}", orderDto);
         service.saveOrder(mapper.mapToOrder(orderDto));
         return orderDto;
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public OrderDto updateOrderById(@PathVariable("id") long id, @RequestBody OrderDto orderDto) {
-        log.debug("REST request to update order with id: ", id);
+        log.debug("REST request to update order with id: {}", id);
         return mapper.mapToOrderDto(service.saveOrder(mapper.mapToOrder(orderDto)));
     }
 
     @DeleteMapping("/{id}")
     public void deleteOrderById(@PathVariable("id") long id) {
-        log.debug("REST request to delete order with id: ", id);
+        log.debug("REST request to delete order with id: {}", id);
         service.deleteOrder(id);
     }
 }

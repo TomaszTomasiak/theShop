@@ -2,6 +2,8 @@ package com.theshop.controller;
 
 import com.theshop.domain.dto.ProductGroupDto;
 import com.theshop.exception.NotFoundException;
+import com.theshop.exception.NullArgumentException;
+import com.theshop.exception.ProductGroupException;
 import com.theshop.mapper.ProductGroupMapper;
 import com.theshop.service.ProductGroupService;
 import org.slf4j.Logger;
@@ -32,26 +34,26 @@ public class ProductGroupController {
 
     @GetMapping (value ="/{id}")
     public ProductGroupDto getGroup(@PathVariable("id") long id) throws NotFoundException {
-        log.debug("REST request to get group with id: ", id);
+        log.debug("REST request to get group with id: {}", id);
         return mapper.mapToProductGroupDto(service.getGroup(id).orElseThrow(NotFoundException::new));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ProductGroupDto createGroup(@RequestBody ProductGroupDto productGroupDto) {
-        log.debug("REST request to add new group: ", productGroupDto);
+        log.debug("REST request to add new group: {}", productGroupDto);
         service.saveGroup(mapper.mapToProductGroup(productGroupDto));
         return productGroupDto;
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ProductGroupDto updateGroupById(@PathVariable("id") Long id, @RequestBody ProductGroupDto productGroupDto) {
-        log.debug("REST request to update group with id: ", id);
+        log.debug("REST request to update group with id: {}", id);
         return mapper.mapToProductGroupDto(service.saveGroup(mapper.mapToProductGroup(productGroupDto)));
     }
 
     @DeleteMapping(value = "/{id}")
-    public void deleteGroupById(@PathVariable("id") long id) {
-        log.debug("REST request to delete group with id: ", id);
+    public void deleteGroupById(@PathVariable("id") long id) throws NullArgumentException, ProductGroupException {
+        log.debug("REST request to delete group with id: {}", id);
         service.deleteGroup(id);
         //do zrobienia ProductGroupService.deleteGroupAndImputeDefoultGroup()
     }

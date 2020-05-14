@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class Item {
     private Product product;
 
     private int quantity;
+    private BigDecimal value = new BigDecimal(getProduct().getPrice() * quantity);
 
     @ManyToOne
     @JoinColumn (name = "order_id")

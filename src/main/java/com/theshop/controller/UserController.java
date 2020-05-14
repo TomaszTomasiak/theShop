@@ -32,26 +32,26 @@ public class UserController {
 
     @GetMapping("/{id}")
     public UserDto getUser(@PathVariable("id") long id) throws NotFoundException {
-        log.debug("REST request to get user with id: ", id);
+        log.debug("REST request to get user with id: {}", id);
         return mapper.mapToUserDto(service.getUser(id).orElseThrow(NotFoundException::new));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public UserDto createUser(@RequestBody UserDto userDto) {
-        log.debug("REST request to add new user: ", userDto);
+        log.debug("REST request to add new user: {}", userDto);
         service.saveUser(mapper.mapToUser(userDto));
         return userDto;
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public UserDto updateUserById(@PathVariable("id") Long id, @RequestBody UserDto userDto) {
-        log.debug("REST request to update user with id: ", id);
+        log.debug("REST request to update user with id: {}", id);
         return mapper.mapToUserDto(service.saveUser(mapper.mapToUser(userDto)));
     }
 
     @DeleteMapping("/{id}")
     public void deleteUserById(@PathVariable("id") long id) {
-        log.debug("REST request to delete user with id: ", id);
+        log.debug("REST request to delete user with id: {}", id);
         service.deleteUser(id);
     }
 }

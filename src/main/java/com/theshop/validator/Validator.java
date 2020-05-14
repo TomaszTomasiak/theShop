@@ -3,10 +3,10 @@ package com.theshop.validator;
 import com.theshop.domain.Item;
 import com.theshop.domain.Product;
 import com.theshop.exception.CartExceptionNotFound;
-import com.theshop.service.CartService;
-import com.theshop.service.OrderService;
-import com.theshop.service.ProductService;
-import com.theshop.service.UserService;
+import com.theshop.exception.NullArgumentException;
+import com.theshop.exception.ProductException;
+import com.theshop.exception.UserException;
+import com.theshop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,17 +27,27 @@ public class Validator {
     @Autowired
     private OrderService orderService;
 
-    private void validateCartItems(List<Item> itemList) throws CartExceptionNotFound {
+    @Autowired
+    ItemService itemService;
+
+    public void validateCartItems(List<Item> itemList) throws CartExceptionNotFound {
         if(itemList == null) {
             throw new IllegalArgumentException("Passed arguments are equal null");
         }
         for (int i = 0; i < itemList.size(); i++) {
-            Optional<Product> product = productService.getProduct(itemList.get(i).getProduct().getId());
-            if(!product.isPresent()) {
-                throw new CartExceptionNotFound(CartExceptionNotFound.ERR_PRODUCT_NOT_FOUND);
+            Optional<Item> item = itemService.getItem(itemList.get(i).getId());
+            if(!item.isPresent()) {
+                throw new CartExceptionNotFound(CartExceptionNotFound.ERR_ITEM_NOT_FOUND);
             }
         }
     }
 
-
+    public void validateUser(Long userId) throws UserException, NullArgumentException {
+        if (userId == null) {
+            throw new NullArgumentException(NullArgumentException.ERR_ARGUMENTS_NULL);
+        }
+        if (!userService.getUser(userId).isPresent()) {
+            throw new UserException(UserException.ERR_USER_NOT_FOUND);
+        }
+    }
 }
