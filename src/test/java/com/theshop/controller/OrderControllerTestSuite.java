@@ -116,7 +116,7 @@ public class OrderControllerTestSuite {
     public void shouldCreateOrder() throws Exception {
         //Given
 
-        when(orderController.createOrder(ArgumentMatchers.any(OrderDto.class))).thenReturn(orderDto);
+        when(orderController.createdOrder(ArgumentMatchers.any(OrderDto.class))).thenReturn(orderDto);
 
         Gson gson = new Gson();
         String jsonContent = gson.toJson(orderDto);

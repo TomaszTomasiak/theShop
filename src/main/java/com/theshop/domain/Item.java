@@ -29,7 +29,7 @@ public class Item {
     private Product product;
 
     private int quantity;
-    private BigDecimal value = new BigDecimal(getProduct().getPrice() * quantity);
+    private BigDecimal value;
 
     @ManyToOne
     @JoinColumn (name = "order_id")

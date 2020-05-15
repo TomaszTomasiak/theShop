@@ -1,19 +1,18 @@
 package com.theshop.validator;
 
 import com.theshop.domain.Item;
-import com.theshop.domain.Product;
 import com.theshop.exception.CartExceptionNotFound;
 import com.theshop.exception.NullArgumentException;
-import com.theshop.exception.ProductException;
 import com.theshop.exception.UserException;
 import com.theshop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
+
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Component
 public class Validator {
     @Autowired
     private CartService cartService;
@@ -28,7 +27,7 @@ public class Validator {
     private OrderService orderService;
 
     @Autowired
-    ItemService itemService;
+    private ItemService itemService;
 
     public void validateCartItems(List<Item> itemList) throws CartExceptionNotFound {
         if(itemList == null) {

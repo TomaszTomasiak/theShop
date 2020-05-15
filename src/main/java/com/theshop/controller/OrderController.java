@@ -1,9 +1,13 @@
 package com.theshop.controller;
 
 import com.theshop.domain.dto.OrderDto;
+import com.theshop.exception.CartExceptionNotFound;
 import com.theshop.exception.NotFoundException;
+import com.theshop.exception.NullArgumentException;
+import com.theshop.exception.UserException;
 import com.theshop.mapper.OrderMapper;
 import com.theshop.service.OrderService;
+import com.theshop.service.TheShopService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +25,9 @@ public class OrderController {
     @Autowired
     private OrderMapper mapper;
 
+    @Autowired
+    private TheShopService theShopService;
+
     private final Logger log = LoggerFactory.getLogger(OrderController.class);
 
     @GetMapping
@@ -36,9 +43,9 @@ public class OrderController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public OrderDto saveOrder(@RequestBody OrderDto orderDto) {
+    public OrderDto createdOrder(@RequestBody OrderDto orderDto) throws UserException, NullArgumentException, CartExceptionNotFound {
         log.debug("REST request to create order: {}", orderDto);
-        service.saveOrder(mapper.mapToOrder(orderDto));
+        theShopService.createNewOrder(mapper.mapToOrder(orderDto));
         return orderDto;
     }
 

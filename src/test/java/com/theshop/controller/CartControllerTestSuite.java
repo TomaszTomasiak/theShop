@@ -115,7 +115,7 @@ public class CartControllerTestSuite {
     public void shouldCreateCart() throws Exception {
         //Given
 
-        when(cartController.createCart(ArgumentMatchers.any(CartDto.class))).thenReturn(cartDto);
+        when(cartController.createNewCart(ArgumentMatchers.any(CartDto.class))).thenReturn(cartDto);
 
         Gson gson = new Gson();
         String jsonContent = gson.toJson(cartDto);

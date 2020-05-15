@@ -3,6 +3,8 @@ package com.theshop.service;
 
 import com.theshop.domain.ProductGroup;
 import com.theshop.exception.NotFoundException;
+import com.theshop.exception.NullArgumentException;
+import com.theshop.exception.ProductGroupException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ public class ProductGroupServiceTestSuite {
     private ProductGroupService groupService;
 
     @Test
-    public void testSaveOrGetGroup() throws NotFoundException {
+    public void testSaveOrGetGroup() throws NotFoundException, NullArgumentException, ProductGroupException {
         //Given
         long prevNumOfRecords =  groupService.getGroups().size();
         List<ProductGroup> groups = new ArrayList<>();
@@ -46,7 +48,7 @@ public class ProductGroupServiceTestSuite {
     }
 
     @Test
-    public void testUpdateGroup() throws NotFoundException {
+    public void testUpdateGroup() throws NotFoundException, NullArgumentException, ProductGroupException {
         //Given
         ProductGroup tempGroup = null;
         ProductGroup group = new ProductGroup();
@@ -65,5 +67,4 @@ public class ProductGroupServiceTestSuite {
         //CleanUp
         groupService.deleteGroup(group.getId());
     }
-
 }

@@ -1,15 +1,13 @@
 package com.theshop.mapper;
 
 import com.theshop.dao.CartDao;
-import com.theshop.dao.OrderDao;
 import com.theshop.dao.UserDao;
 import com.theshop.domain.Order;
 import com.theshop.domain.dto.OrderDto;
+import com.theshop.service.TheShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,9 +20,11 @@ public class OrderMapper {
     @Autowired
     UserDao userDao;
 
+    @Autowired
+    TheShopService theShopService;
+
     public Order mapToOrder(final OrderDto orderDto) {
         Order orderBean = new Order();
-
         orderBean.setId(orderDto.getId());
         orderBean.setOrdered(orderDto.getOrdered());
         orderBean.setComments(orderDto.getComments());
@@ -36,6 +36,15 @@ public class OrderMapper {
     }
 
     public OrderDto mapToOrderDto(final Order order) {
+        OrderDto orderDtoBean = new OrderDto();
+        orderDtoBean.setId(order.getId());
+        orderDtoBean.setOrdered(order.getOrdered());
+        orderDtoBean.setComments(order.getComments());
+        orderDtoBean.setCartId(order.getCart().getId());
+        orderDtoBean.setUserId(order.getUser().getId());
+        orderDtoBean.setTotalValue(theShopService.calculateCost(order));
+        orderDtoBean.setCompleted(order.isCompleted());
+
         return new OrderDto(
                 order.getId(),
                 order.getOrdered(),

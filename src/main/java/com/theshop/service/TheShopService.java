@@ -22,7 +22,7 @@ public class TheShopService {
     private final Logger log = LoggerFactory.getLogger(TheShopService.class);
 
     @Autowired
-    Validator validator;
+    private Validator validator;
 
     @Autowired
     private CartService cartService;
@@ -37,7 +37,7 @@ public class TheShopService {
     private OrderService orderService;
 
     @Autowired
-    ItemService itemService;
+    private ItemService itemService;
 
     public Cart createNewCart(Cart cart) throws CartExceptionBadRequest {
         if (exists(cart.getId())) {
@@ -85,12 +85,12 @@ public class TheShopService {
 
         validator.validateCartItems(order.getCart().getItems());
         validator.validateUser(order.getUser().getId());
-        order.getCart().getItems().stream()
-                .forEach(item -> order.getItems().add(item));
+//        order.getCart().getItems().stream()
+//                .forEach(item -> order.getItems().add(item));
 
-        BigDecimal value = order.getItems().stream()
-                .map(i -> i.getValue())
-                .reduce(BigDecimal.ZERO, (sum, current) -> sum = sum.add(current));
+//        BigDecimal value = order.getItems().stream()
+//                .map(i -> i.getValue())
+//                .reduce(BigDecimal.ZERO, (sum, current) -> sum = sum.add(current));
 
         return orderService.saveOrder(order);
     }
@@ -100,5 +100,19 @@ public class TheShopService {
             return false;
         }
         return true;
+    }
+
+
+    public BigDecimal calculateCost(Order order) {
+        if(order.getCart() == null) {
+            return BigDecimal.ZERO;
+        }
+        if(order.getCart().getItems() == null) {
+            return BigDecimal.ZERO;
+        }
+
+        return BigDecimal.valueOf(order.getCart().getItems().stream()
+                .mapToDouble(i->i.getProduct().getPrice() * i.getQuantity())
+                .sum()).setScale(2);
     }
 }

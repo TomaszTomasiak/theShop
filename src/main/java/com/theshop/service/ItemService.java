@@ -24,12 +24,11 @@ public class ItemService {
     @Autowired
     private ItemDao itemDao;
 
-    @Autowired
-    Validator validator;
 
     public List<Item> getItems() {
         log.debug("Request to get all items");
-        return itemDao.findAll();
+        return
+                itemDao.findAll();
     }
 
     public Optional<Item> getItem(long id) {
@@ -49,7 +48,6 @@ public class ItemService {
 
     public Item addUpdateRemoveProductItem(Item item) throws CartExceptionNotFound {
         log.debug("Request to add, delete or update product item: {} ", item);
-        //validator.validateItemProducts(item.);
         saveItem(item);
         return item;
     }
