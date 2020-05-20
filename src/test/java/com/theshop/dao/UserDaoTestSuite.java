@@ -21,17 +21,16 @@ public class UserDaoTestSuite {
     @Test
     public void testUserDaoSave() {
         //Given
-        User user = User.builder()
-                .firstName("John")
-                .lastName("Rambo")
-                .mailAdress("john.rambo@gmail.com")
-                .password("firstblood")
-                .phoneNumber("123123123")
-                .build();
+        User user = new User();
+                user.setFirstName("John");
+                user.setLastName("Rambo");
+                user.setMailAdress("john.rambo@gmail.com");
+                user.setPassword("firstblood");
+                user.setPhoneNumber("123123123");
 
         //When
         userDao.save(user);
-        List<User> users = userDao.findAll();
+        //List<User> users = userDao.findAll();
         Long id = user.getId();
 
         //Then

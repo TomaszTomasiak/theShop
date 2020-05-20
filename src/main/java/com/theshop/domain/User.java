@@ -27,12 +27,14 @@ public class User {
     @Column(name="last_name")
     private String lastName;
 
-    @Column(name="mail_adress")
+    @NotNull
+    @Column(name="mail_adress", unique = true)
     private String mailAdress;
 
     @Column(name="phone")
     private String phoneNumber;
 
+    @NotNull
     @Column(name="password")
     private String password;
 
