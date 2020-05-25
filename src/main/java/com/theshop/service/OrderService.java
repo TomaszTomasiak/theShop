@@ -1,6 +1,8 @@
 package com.theshop.service;
 
+import com.theshop.config.AdminConfig;
 import com.theshop.dao.OrderDao;
+import com.theshop.domain.Mail;
 import com.theshop.domain.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +22,12 @@ public class OrderService {
     @Autowired
     private OrderDao orderDao;
 
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
+    private AdminConfig adminConfig;
+
     public List<Order> getOrders() {
         log.debug("Request to get all orders");
         return orderDao.findAll();
@@ -32,7 +40,13 @@ public class OrderService {
 
     public Order saveOrder(Order order) {
         log.debug("Request to create order: {}", order);
-        return orderDao.save(order);
+        Order createdOrder = orderDao.save(order);
+        emailService.send(new Mail(
+                adminConfig.getAdminMail(),
+                "New order",
+                "Added new order with total value: " + createdOrder.getTotalValue() + "PLN"
+        ));
+        return createdOrder;
     }
 
     public void deleteOrder(long id) {

@@ -1,6 +1,9 @@
 package com.theshop.service;
 
+import com.theshop.config.AdminConfig;
 import com.theshop.dao.UserDao;
+import com.theshop.domain.Mail;
+import com.theshop.domain.Order;
 import com.theshop.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +23,12 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    EmailService emailService;
+
+    @Autowired
+    AdminConfig adminConfig;
+
     public List<User> getUsers() {
         log.debug("Request to get all Users");
         return userDao.findAll();
@@ -32,6 +41,12 @@ public class UserService {
 
     public User saveUser(User user) {
         log.debug("Request to create User : {}", user);
+        User createdOrder = userDao.save(user);
+        emailService.send(new Mail(
+                adminConfig.getAdminMail(),
+                "New user",
+                "Added new user with mail adress: " + createdOrder.getMailAdress()
+        ));
         return userDao.save(user);
     }
 

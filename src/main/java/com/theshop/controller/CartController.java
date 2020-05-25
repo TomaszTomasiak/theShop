@@ -62,12 +62,12 @@ public class CartController {
         service.deleteCart(id);
     }
 
-    @PostMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}/item", consumes = MediaType.APPLICATION_JSON_VALUE)
     public CartDto addItemToCart(@PathVariable("id") long cartId, @RequestBody Item item) throws CartExceptionNotFound {
         return mapper.mapToCartDto(theShopService.addItemToCard(cartId, item));
     }
 
-    @DeleteMapping(value = "/{cartId}&{itemId}")
+    @PutMapping(value = "/{cartId}&{itemId}")
     public CartDto removeItemFromCart(@PathVariable("cartId") long cartId, @PathVariable("itemId") long itemId) throws CartExceptionNotFound {
         log.debug("REST request to delete item with id: {} from the cart with id: {}", itemId, cartId);
         return mapper.mapToCartDto(theShopService.removeItemFromTheCard(cartId,itemId));

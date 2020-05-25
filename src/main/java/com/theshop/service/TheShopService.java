@@ -85,13 +85,6 @@ public class TheShopService {
 
         validator.validateCartItems(order.getCart().getItems());
         validator.validateUser(order.getUser().getId());
-//        order.getCart().getItems().stream()
-//                .forEach(item -> order.getItems().add(item));
-
-//        BigDecimal value = order.getItems().stream()
-//                .map(i -> i.getValue())
-//                .reduce(BigDecimal.ZERO, (sum, current) -> sum = sum.add(current));
-
         return orderService.saveOrder(order);
     }
 

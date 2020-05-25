@@ -17,7 +17,7 @@ public class ItemDtoCreator {
                 .id(ITEM_ID)
                 .productId(PRODUCT_ID)
                 .quantity(ITEM_QTY)
-                .orderId(ORDER_ID)
+
                 .build();
     }
 
@@ -26,7 +26,6 @@ public class ItemDtoCreator {
                 .id(ITEM_ID)
                 .productId(UPDATED_PRODUCT_ID)
                 .quantity(UPDATED_ITEM_QTY)
-                .orderId(UPDATED_ORDER_ID)
                 .build();
     }
 }

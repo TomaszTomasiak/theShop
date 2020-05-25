@@ -44,11 +44,11 @@ public class Order {
 
     private boolean isCompleted;
 
-    @Builder.Default
-    @OneToMany(
-            targetEntity = Item.class,
-            mappedBy = "order",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
-    private List<Item> items = new ArrayList<>();
+//    @Builder.Default
+//    @OneToMany(
+//            targetEntity = Item.class,
+//            mappedBy = "order",
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY)
+//    private List<Item> items = new ArrayList<>();
 }

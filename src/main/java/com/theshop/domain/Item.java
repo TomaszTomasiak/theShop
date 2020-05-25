@@ -31,9 +31,9 @@ public class Item {
     private int quantity;
     private BigDecimal value;
 
-    @ManyToOne
-    @JoinColumn (name = "order_id")
-    private Order order;
+//    @ManyToOne
+//    @JoinColumn (name = "order_id")
+//    private Order order;
 
     @Builder.Default
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "items")

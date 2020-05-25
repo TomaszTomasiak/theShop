@@ -27,8 +27,7 @@ public class ItemService {
 
     public List<Item> getItems() {
         log.debug("Request to get all items");
-        return
-                itemDao.findAll();
+        return itemDao.findAll();
     }
 
     public Optional<Item> getItem(long id) {
@@ -38,7 +37,7 @@ public class ItemService {
 
     public Item saveItem(Item item) {
         log.debug("Request to create item: {}", item);
-       return itemDao.save(item);
+        return itemDao.save(item);
     }
 
     public void deleteItem(long id) {

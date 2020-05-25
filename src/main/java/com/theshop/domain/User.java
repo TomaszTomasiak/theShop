@@ -19,22 +19,18 @@ public class User {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    @NotNull
     @Column(name="first_name")
     private String firstName;
 
-    @NotNull
     @Column(name="last_name")
     private String lastName;
 
-    @NotNull
     @Column(name="mail_adress", unique = true)
     private String mailAdress;
 
     @Column(name="phone")
     private String phoneNumber;
 
-    @NotNull
     @Column(name="password")
     private String password;
 

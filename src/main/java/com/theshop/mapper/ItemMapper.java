@@ -24,17 +24,17 @@ public class ItemMapper {
         itemBean.setId(itemDto.getId());
         itemBean.setProduct(productDao.findById(itemDto.getId()).orElse(null));
         itemBean.setQuantity(itemDto.getQuantity());
-        itemBean.setOrder(orderDao.findById(itemDto.getId()).orElse(null));
+        //itemBean.setOrder(orderDao.findById(itemDto.getId()).orElse(null));
         return itemBean;
     }
 
     public ItemDto mapToItemDto(final Item item) {
-        return new ItemDto(
-                item.getId(),
-                item.getProduct().getId(),
-                item.getQuantity(),
-                item.getOrder().getId()
-        );
+        ItemDto itemDtoBean = new ItemDto();
+        itemDtoBean.setId(item.getId());
+        itemDtoBean.setProductId(item.getProduct().getId());
+        itemDtoBean.setQuantity(item.getQuantity());
+        //itemDtoBean.setOrderId(item.getOrder().getId());
+        return itemDtoBean;
     }
 
     public List<Item> mapToItemList(final List<ItemDto> itemDtoList) {
