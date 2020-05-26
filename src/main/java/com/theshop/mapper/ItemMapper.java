@@ -24,7 +24,6 @@ public class ItemMapper {
         itemBean.setId(itemDto.getId());
         itemBean.setProduct(productDao.findById(itemDto.getId()).orElse(null));
         itemBean.setQuantity(itemDto.getQuantity());
-        //itemBean.setOrder(orderDao.findById(itemDto.getId()).orElse(null));
         return itemBean;
     }
 
@@ -33,7 +32,6 @@ public class ItemMapper {
         itemDtoBean.setId(item.getId());
         itemDtoBean.setProductId(item.getProduct().getId());
         itemDtoBean.setQuantity(item.getQuantity());
-        //itemDtoBean.setOrderId(item.getOrder().getId());
         return itemDtoBean;
     }
 

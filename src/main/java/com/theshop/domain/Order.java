@@ -31,11 +31,11 @@ public class Order {
     @Column(name = "comments")
     private String comments;
 
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="cart_id")
     private Cart cart;
 
-    @ManyToOne
+        @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -44,11 +44,4 @@ public class Order {
 
     private boolean isCompleted;
 
-//    @Builder.Default
-//    @OneToMany(
-//            targetEntity = Item.class,
-//            mappedBy = "order",
-//            cascade = CascadeType.ALL,
-//            fetch = FetchType.LAZY)
-//    private List<Item> items = new ArrayList<>();
 }

@@ -113,7 +113,6 @@ public class ItemControllerTestSuite {
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
                 .andExpect(jsonPath("$.id", is(5)))
-                .andExpect(jsonPath("$.orderId", is(3)))
                 .andExpect(jsonPath("$.productId", is(31)));
     }
 
@@ -132,7 +131,6 @@ public class ItemControllerTestSuite {
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
                 .andExpect(jsonPath("$.id", is(5)))
-                .andExpect(jsonPath("$.orderId", is(23)))
                 .andExpect(jsonPath("$.productId", is(17)));
     }
 

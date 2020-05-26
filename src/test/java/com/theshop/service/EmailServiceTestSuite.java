@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
@@ -21,6 +22,7 @@ public class EmailServiceTestSuite {
     @Mock
     private JavaMailSender javaMailSender;
 
+
     @Test
     public void shouldSendEmail() {
         //Given
@@ -32,7 +34,7 @@ public class EmailServiceTestSuite {
         mailMessage.setText(mail.getMessage());
 
         //When
-        emailService.send(mail);
+        emailService.sendMail(mail);
 
         //Then
         verify(javaMailSender, times(1)).send(mailMessage);

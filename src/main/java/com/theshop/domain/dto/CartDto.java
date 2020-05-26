@@ -16,4 +16,5 @@ public class CartDto {
 
     private Long id;
     private List<Item> items;
+    private Long orderId;
 }

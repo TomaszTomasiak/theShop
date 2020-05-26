@@ -25,17 +25,14 @@ public class Item {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
+    @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
+    @Column(name = "quantity")
     private int quantity;
-    private BigDecimal value;
 
-//    @ManyToOne
-//    @JoinColumn (name = "order_id")
-//    private Order order;
-
-    @Builder.Default
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "items")
-    private List<Cart> carts = new ArrayList<>();
 }

@@ -13,5 +13,4 @@ public class ItemDto {
     private Long id;
     private Long productId;
     private int quantity;
-    //private Long orderId;
 }

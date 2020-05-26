@@ -25,12 +25,13 @@ public class Cart implements Serializable {
     private Long id;
 
     @Builder.Default
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "items_on_carts",
-            joinColumns = @JoinColumn(name = "cart_id", referencedColumnName = "cart_id"),
-            inverseJoinColumns = @JoinColumn(name ="item_id", referencedColumnName = "item_id")
-    )
+    @OneToMany(
+            targetEntity = Item.class,
+            mappedBy = "cart",
+            cascade = CascadeType.MERGE,
+            fetch = FetchType.LAZY)
     private List<Item> items = new ArrayList<>();
 
+    @OneToOne(mappedBy = "cart", fetch = FetchType.LAZY)
+    private Order order;
 }
