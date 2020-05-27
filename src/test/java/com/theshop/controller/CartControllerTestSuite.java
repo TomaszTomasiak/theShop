@@ -2,7 +2,7 @@ package com.theshop.controller;
 
 import com.google.gson.Gson;
 import com.theshop.domain.dto.CartDto;
-import com.theshop.resourcedata.CartDtoCreator;
+import com.theshop.resource_data.CartDtoCreator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

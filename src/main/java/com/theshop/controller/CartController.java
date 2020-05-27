@@ -1,10 +1,9 @@
 package com.theshop.controller;
 
+import com.theshop.domain.Cart;
 import com.theshop.domain.Item;
 import com.theshop.domain.dto.CartDto;
-import com.theshop.exception.CartExceptionBadRequest;
-import com.theshop.exception.CartExceptionNotFound;
-import com.theshop.exception.NotFoundException;
+import com.theshop.exception.*;
 import com.theshop.mapper.CartMapper;
 import com.theshop.service.CartService;
 import com.theshop.service.TheShopService;
@@ -44,17 +43,20 @@ public class CartController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public CartDto createNewCart(@RequestBody CartDto cartDto) throws CartExceptionBadRequest {
-        log.debug("REST request to create new cart: {}", cartDto);
-        mapper.mapToCartDto(theShopService.createNewCart(mapper.mapToCart(cartDto)));
-        return cartDto;
+        public CartDto createNewCart(@RequestBody CartDto cartDto) throws CartExceptionBadRequest, UserException, NullArgumentException {
+            if(cartDto == null) {
+                throw new IllegalArgumentException("Some passed arguments are equal null");
+            }
+            log.debug("REST request to create new cart: {}", cartDto);
+            mapper.mapToCartDto(theShopService.saveNewCart(mapper.mapToCart(cartDto)));
+            return cartDto;
     }
 
-    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public CartDto updateCartById(@PathVariable("id") Long id, @RequestBody CartDto cartDto) throws CartExceptionNotFound {
-        log.debug("REST request to update cart with id: {}", id);
-        return mapper.mapToCartDto(service.saveCart(mapper.mapToCart(cartDto)));
-    }
+//    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public CartDto updateCartById(@PathVariable("id") Long cartId, @RequestBody CartDto cartDto){
+//        log.debug("REST request to update cart with id: {}", cartId);
+//        return mapper.mapToCartDto(service.saveCart(mapper.mapToCart(cartDto)));
+//    }
 
     @DeleteMapping("/{id}")
     public void deleteCartById(@PathVariable("id") long id) {
@@ -76,6 +78,23 @@ public class CartController {
     @PutMapping(value = "/{cartId}&{itemId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public CartDto updateItemFromCart(@PathVariable("cartId") long cartId, @PathVariable("itemId") long itemId, @RequestBody Item item) throws CartExceptionNotFound {
         return mapper.mapToCartDto(theShopService.updateItemFromTheCart(cartId, itemId, item));
+    }
+
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public CartDto addUpdateDeleteItemsFromCart(@PathVariable("id") Long cartId, @RequestBody Cart cart) throws CartExceptionNotFound, UserException, NullArgumentException, CartExceptionBadRequest {
+        if(cart == null ^ cartId == null) {
+            throw new IllegalArgumentException("Passed arguments are equal null");
+        }
+        if(cart.getId() != cartId) {
+            throw new CartExceptionBadRequest(CartExceptionBadRequest.ERR_CART_PATH);
+        }
+
+        if(!service.exists(cartId)) {
+            throw new CartExceptionNotFound(CartExceptionNotFound.ERR_CART_NOT_FOUND);
+        }
+//        cart.setId(cartId);
+//        Cart cartUpdated = theShopService.addItemsToExistingCart(cart);
+        return mapper.mapToCartDto(theShopService.updateItemsOnExistingCart(cart));
     }
 }
 

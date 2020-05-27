@@ -1,7 +1,7 @@
 package com.theshop.controller;
 
 import com.google.gson.Gson;
-import com.theshop.resourcedata.ItemDtoCreator;
+import com.theshop.resource_data.ItemDtoCreator;
 import com.theshop.domain.dto.ItemDto;
 import org.junit.Before;
 import org.junit.Test;

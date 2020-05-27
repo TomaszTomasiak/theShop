@@ -1,6 +1,7 @@
 package com.theshop.mapper;
 
 import com.theshop.dao.OrderDao;
+import com.theshop.dao.UserDao;
 import com.theshop.domain.Cart;
 import com.theshop.domain.dto.CartDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,15 @@ public class CartMapper {
     @Autowired
     private OrderDao orderDao;
 
+    @Autowired
+    private UserDao userDao;
+
    public Cart mapToCart(final CartDto cartDto) {
        Cart cartBean = new Cart();
        cartBean.setId(cartDto.getId());
        cartBean.setItems(cartDto.getItems());
        cartBean.setOrder(orderDao.findById(cartDto.getOrderId()).orElse(null));
+       cartBean.setUser(userDao.findById(cartDto.getUserId()).orElse(null));
        return cartBean;
    }
 
@@ -28,6 +33,7 @@ public class CartMapper {
         cartBean.setId(cart.getId());
         cartBean.setItems(cart.getItems());
         cartBean.setOrderId(cart.getOrder().getId());
+        cartBean.setOrderId(cart.getUser().getId());
         return cartBean;
     }
 

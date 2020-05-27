@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name="orders")
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -32,10 +32,10 @@ public class Order {
     private String comments;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="cart_id")
+    @JoinColumn(name = "cart_id")
     private Cart cart;
 
-        @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 

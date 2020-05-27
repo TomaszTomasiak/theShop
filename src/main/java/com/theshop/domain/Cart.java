@@ -24,6 +24,10 @@ public class Cart implements Serializable {
     @Column(name = "cart_id", unique = true)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="userId")
+    private User user;
+
     @Builder.Default
     @OneToMany(
             targetEntity = Item.class,

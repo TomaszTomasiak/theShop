@@ -2,7 +2,7 @@ package com.theshop.controller;
 
 import com.google.gson.Gson;
 import com.theshop.domain.dto.OrderDto;
-import com.theshop.resourcedata.OrderDtoCreator;
+import com.theshop.resource_data.OrderDtoCreator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

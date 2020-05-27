@@ -1,4 +1,4 @@
-package com.theshop.resourcedata;
+package com.theshop.resource_data;
 
 import com.theshop.domain.dto.ProductGroupDto;
 

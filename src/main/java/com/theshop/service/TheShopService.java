@@ -3,6 +3,7 @@ package com.theshop.service;
 import com.theshop.domain.Cart;
 import com.theshop.domain.Item;
 import com.theshop.domain.Order;
+import com.theshop.domain.Product;
 import com.theshop.exception.CartExceptionBadRequest;
 import com.theshop.exception.CartExceptionNotFound;
 import com.theshop.exception.NullArgumentException;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -107,5 +109,45 @@ public class TheShopService {
         return BigDecimal.valueOf(order.getCart().getItems().stream()
                 .mapToDouble(i->i.getProduct().getPrice() * i.getQuantity())
                 .sum()).setScale(2);
+    }
+
+    private void validateCartItems(List<Item> orderItemList) throws CartExceptionNotFound {
+        if(orderItemList == null) {
+            throw new IllegalArgumentException("Passed arguments are equal null");
+        }
+        for (int i = 0; i < orderItemList.size(); i++) {
+            Optional<Product> product = productService.getProduct(orderItemList.get(i).getProduct().getId());
+            if(!product.isPresent()) {
+                throw new CartExceptionNotFound(CartExceptionNotFound.ERR_PRODUCT_NOT_FOUND);
+            }
+        }
+    }
+
+    private void validateUser(Long userId) throws UserException, NullArgumentException {
+        if(userId == null) {
+            throw new NullArgumentException(NullArgumentException.ERR_ARGUMENTS_NULL);
+        }
+        if(!userService.getUser(userId).isPresent()) {
+            throw new UserException(UserException.ERR_USER_NOT_FOUND);
+        }
+    }
+
+    public Cart updateItemsOnExistingCart(Cart cart) throws CartExceptionNotFound, UserException, NullArgumentException {
+        validateCartItems(cart.getItems());
+        validateUser(cart.getUser().getId());
+        Cart cartSaved = cartService.saveCart(cart);
+
+        return cartSaved;
+    }
+
+    public Cart saveNewCart(Cart cart) throws CartExceptionBadRequest, NullArgumentException, UserException {
+        if(cart.getId() != null) {
+            if (cartService.exists(cart.getId())) {
+                throw new CartExceptionBadRequest(CartExceptionBadRequest.ERR_CART_EXISTS);
+            }
+        }
+        validateUser(cart.getUser().getId());
+        Cart saved = cartService.saveCart(cart);
+        return saved;
     }
 }

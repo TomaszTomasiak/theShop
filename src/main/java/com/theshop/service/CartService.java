@@ -40,4 +40,11 @@ public class CartService {
         cartDao.deleteById(id);
     }
 
+    public boolean exists(Long id) {
+        if(!cartDao.findById(id).isPresent()) {
+            return false;
+        }
+        return true;
+    }
+
 }
