@@ -104,7 +104,7 @@ public class CartControllerTestSuite {
         String jsonContent = gson.toJson(updatedCartDto);
 
         //When & Then
-        mockMvc.perform(put("/api/v1/carts/"+cartDto.getId())
+        mockMvc.perform(put("/api/v1/carts/update/"+cartDto.getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))

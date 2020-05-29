@@ -52,11 +52,11 @@ public class CartController {
             return cartDto;
     }
 
-//    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public CartDto updateCartById(@PathVariable("id") Long cartId, @RequestBody CartDto cartDto){
-//        log.debug("REST request to update cart with id: {}", cartId);
-//        return mapper.mapToCartDto(service.saveCart(mapper.mapToCart(cartDto)));
-//    }
+    @PutMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public CartDto updateCartById(@PathVariable("id") Long cartId, @RequestBody CartDto cartDto){
+        log.debug("REST request to update cart with id: {}", cartId);
+        return mapper.mapToCartDto(service.saveCart(mapper.mapToCart(cartDto)));
+    }
 
     @DeleteMapping("/{id}")
     public void deleteCartById(@PathVariable("id") long id) {
