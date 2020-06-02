@@ -1,6 +1,6 @@
 
 
-# theShop - backend
+# theShop - REST API
 Aplikacja jest prostym symulatorem sklepu internetowego. Funkcjonalności podzielono na dwie części:
 
 - administracyjną
