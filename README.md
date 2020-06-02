@@ -1,3 +1,5 @@
+
+
 # theShop - backend
 Aplikacja jest prostym symulatorem sklepu internetowego. Funkcjonalności podzielono na dwie części:
 
@@ -15,8 +17,8 @@ Po złożeniu zamówienia na maila użytkownika wysyłana jest informacja z potw
 Ceny produktów oraz wartości zamówień przeliczane są na waluty według średniego kursu NBP (zewnetrzne API).
 
 Uruchamianie:
-Pierwszą uruchamiamy aplikację beckendową (port 4600), nastepnie aplikację frontendową (port 4601)
-Otwieramy lokalnie pod adresem: http://localhost:4601/
+Pierwszą uruchamiamy aplikację beckendową (theShop port=4600), nastepnie aplikację frontendową (theShop-frontend port=4601).
+Otwieramy lokalnie pod adresem: http://localhost:4601/.
 Aplikacja backendowa korzysta z bazy danych MySql oraz następujących metod HTTP: GET, PUT, POST, DELETE
 
 link do backendu (REST API): https://github.com/TomaszTomasiak/theShop
