@@ -12,6 +12,7 @@ Aplikacja wysyła powiadomienie do administratora o utworzeniu nowego użytkowni
 Codziennie administrator otrzymuje informację mailową (scheduler) o ilości dodanych użytkowników ostatniej doby oraz ilości i wartości zamówień z dnia poprzedniego.
 
 - biznesową (user)
+
 Użytkownik może wyszukiwać produktów po nazwie lub grupie oraz dodawanie, usuwanie i modyfikowanie produktów koszyku.
 Po złożeniu zamówienia na maila użytkownika wysyłana jest informacja z potwierdzeniem zamówienia oraz listą zakupionych produktów.
 Ceny produktów oraz wartości zamówień przeliczane są na waluty według średniego kursu NBP (zewnetrzne API).
