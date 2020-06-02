@@ -56,10 +56,5 @@ public class ItemDaoTestSuite {
 
         //Then
         assertEquals(5, itemBuild.getQuantity());
-
-        //CleanUp
-//        itemDao.deleteAll();
-//        productDao.deleteAll();
-//        productGroupDao.deleteAll();
     }
 }

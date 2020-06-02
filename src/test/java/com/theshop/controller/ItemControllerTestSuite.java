@@ -13,10 +13,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
@@ -74,7 +72,6 @@ public class ItemControllerTestSuite {
     @Test
     public void shouldGetItemWithIndicatedId() throws Exception {
         //Given
-
         when(itemController.getItem(itemDto.getId())).thenReturn(itemDto);
 
         //When & Then
@@ -103,7 +100,6 @@ public class ItemControllerTestSuite {
         itemDtos.add(itemDto);
         ItemDto updatedItemDto = ItemDtoCreator.createUpdatedItemDto();
         when(itemController.updateItemById(ArgumentMatchers.anyLong(), (ArgumentMatchers.any(ItemDto.class)))).thenReturn(updatedItemDto);
-
         Gson gson = new Gson();
         String jsonContent = gson.toJson(updatedItemDto);
 
@@ -121,7 +117,6 @@ public class ItemControllerTestSuite {
         //Given
 
         when(itemController.createItem(ArgumentMatchers.any(ItemDto.class))).thenReturn(itemDto);
-
         Gson gson = new Gson();
         String jsonContent = gson.toJson(itemDto);
 
@@ -133,5 +128,4 @@ public class ItemControllerTestSuite {
                 .andExpect(jsonPath("$.id", is(5)))
                 .andExpect(jsonPath("$.productId", is(17)));
     }
-
 }

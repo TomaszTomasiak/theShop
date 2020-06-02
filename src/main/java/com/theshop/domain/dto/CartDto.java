@@ -20,6 +20,4 @@ public class CartDto {
     @Builder.Default
     private List<Item> items = new ArrayList<>();
     private Long orderId;
-
-
 }

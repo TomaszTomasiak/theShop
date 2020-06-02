@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("api/v1/groups")
 public class ProductGroupController {
 
@@ -55,6 +56,5 @@ public class ProductGroupController {
     public void deleteGroupById(@PathVariable("id") long id) throws NullArgumentException, ProductGroupException {
         log.debug("REST request to delete group with id: {}", id);
         service.deleteGroup(id);
-        //do zrobienia ProductGroupService.deleteGroupAndImputeDefoultGroup()
     }
 }

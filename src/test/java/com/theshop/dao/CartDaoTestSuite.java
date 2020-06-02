@@ -9,10 +9,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -33,7 +31,6 @@ public class CartDaoTestSuite {
 
     @Test
     public void testCartDaoSave() {
-
         //Given
         ProductGroup productGroupBuild = ProductGroup.builder()
                 .name("budowlane")
@@ -56,7 +53,6 @@ public class CartDaoTestSuite {
         List<Item> items = new ArrayList<>();
         items.add(itemBuild);
         itemDao.save(itemBuild);
-
         Cart cartBuilder = Cart.builder()
                 .build();
 
@@ -66,6 +62,5 @@ public class CartDaoTestSuite {
 
         //Then
         assertNotEquals(0, cartDao.findCartById(id));
-
     }
 }

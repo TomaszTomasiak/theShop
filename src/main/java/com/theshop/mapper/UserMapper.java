@@ -3,7 +3,6 @@ package com.theshop.mapper;
 import com.theshop.domain.User;
 import com.theshop.domain.dto.UserDto;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

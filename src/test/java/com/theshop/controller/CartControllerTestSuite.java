@@ -13,10 +13,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
@@ -71,7 +69,6 @@ public class CartControllerTestSuite {
     @Test
     public void shouldGetCartWithIndicatedId() throws Exception {
         //Given
-
         when(cartController.getCart(cartDto.getId())).thenReturn(cartDto);
 
         //When & Then
@@ -99,7 +96,6 @@ public class CartControllerTestSuite {
         cartDtos.add(cartDto);
         CartDto updatedCartDto= CartDtoCreator.updatedCartDtoCreator();
         when(cartController.updateCartById(ArgumentMatchers.anyLong(), (ArgumentMatchers.any(CartDto.class)))).thenReturn(updatedCartDto);
-
         Gson gson = new Gson();
         String jsonContent = gson.toJson(updatedCartDto);
 
@@ -114,9 +110,7 @@ public class CartControllerTestSuite {
     @Test
     public void shouldCreateCart() throws Exception {
         //Given
-
         when(cartController.createNewCart(ArgumentMatchers.any(CartDto.class))).thenReturn(cartDto);
-
         Gson gson = new Gson();
         String jsonContent = gson.toJson(cartDto);
 

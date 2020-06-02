@@ -13,10 +13,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
@@ -128,8 +126,6 @@ public class OrderControllerTestSuite {
                 .content(jsonContent))
                 .andExpect(jsonPath("$.id", is(2)))
                 .andExpect(jsonPath("$.comments", is(orderDto.getComments())))
-                .andExpect(jsonPath("$.totalValue", is(orderDto.getTotalValue())))
-
-        ;
+                .andExpect(jsonPath("$.totalValue", is(orderDto.getTotalValue())));
     }
 }

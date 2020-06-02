@@ -6,10 +6,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -89,15 +87,6 @@ public class OrderDaoTestSuite {
         //Then
         assertEquals(1, itemList.size());
         assertNotEquals(0, orderDao.findAll().size());
-
-
-        //CleanUp
-//        productGroupDao.deleteById(groupId);
-//        productDao.deleteById(productId);
-//        userDao.deleteById(userId);
-//        itemDao.deleteById(itemId);
-//        cartDao.deleteById(cartId);
-//        orderDao.deleteById(id);
 
     }
 }

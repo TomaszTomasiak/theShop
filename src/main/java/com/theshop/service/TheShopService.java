@@ -1,9 +1,6 @@
 package com.theshop.service;
 
-import com.theshop.domain.Cart;
-import com.theshop.domain.Item;
-import com.theshop.domain.Order;
-import com.theshop.domain.Product;
+import com.theshop.domain.*;
 import com.theshop.exception.CartExceptionBadRequest;
 import com.theshop.exception.CartExceptionNotFound;
 import com.theshop.exception.NullArgumentException;
@@ -13,15 +10,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class TheShopService {
-
-    private final Logger log = LoggerFactory.getLogger(TheShopService.class);
 
     @Autowired
     private Validator validator;
@@ -40,14 +34,6 @@ public class TheShopService {
 
     @Autowired
     private ItemService itemService;
-
-    public Cart createNewCart(Cart cart) throws CartExceptionBadRequest {
-        if (exists(cart.getId())) {
-            throw new CartExceptionBadRequest(CartExceptionBadRequest.ERR_CART_EXISTS);
-        }
-        cart = new Cart();
-        return cartService.saveCart(cart);
-    }
 
     public Cart addItemToCard(long cartId, Item item) throws CartExceptionNotFound {
         Cart cart = cartService.getCart(cartId).orElse(new Cart());

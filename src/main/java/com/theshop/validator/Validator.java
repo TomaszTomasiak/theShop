@@ -14,17 +14,9 @@ import java.util.Optional;
 
 @Component
 public class Validator {
-    @Autowired
-    private CartService cartService;
-
-    @Autowired
-    private ProductService productService;
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private OrderService orderService;
 
     @Autowired
     private ItemService itemService;

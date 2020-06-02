@@ -1,9 +1,7 @@
 package com.theshop.domain;
 
 import lombok.*;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +23,7 @@ public class User {
     @Column(name="last_name")
     private String lastName;
 
-    @Column(name="mail_adress", unique = true)
+    @Column(name="mail_adress")
     private String mailAdress;
 
     @Column(name="phone")

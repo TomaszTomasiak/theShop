@@ -27,8 +27,7 @@ public class UserDaoTestSuite {
                 user.setMailAdress("john.rambo@gmail.com");
                 user.setPassword("firstblood");
                 user.setPhoneNumber("123123123");
-
-        //When
+       //When
         userDao.save(user);
         //List<User> users = userDao.findAll();
         Long id = user.getId();
@@ -39,6 +38,6 @@ public class UserDaoTestSuite {
         assertEquals("John", user.getFirstName());
 
         //CleanUp
-        userDao.deleteAll();
+        //userDao.deleteAll();
     }
 }

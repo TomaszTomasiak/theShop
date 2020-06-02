@@ -89,11 +89,8 @@ public class ProductGroupControllerTestSuite {
         //Given
         List<ProductGroupDto> productGroupDtos = new ArrayList<>();
         productGroupDtos.add(new ProductGroupDto(15L, "group name"));
-
-
         ProductGroupDto productGroupDtoUpdated = new ProductGroupDto(15L, "updated group name");
         when(productGroupController.updateGroupById(ArgumentMatchers.anyLong(), (ArgumentMatchers.any(ProductGroupDto.class)))).thenReturn(productGroupDtoUpdated);
-
         Gson gson = new Gson();
         String jsonContent = gson.toJson(productGroupDtoUpdated);
 
@@ -111,7 +108,6 @@ public class ProductGroupControllerTestSuite {
         //Given
         ProductGroupDto productGroupDto = new ProductGroupDto(15L, "group name");
         when(productGroupController.createGroup(ArgumentMatchers.any(ProductGroupDto.class))).thenReturn(productGroupDto);
-
         Gson gson = new Gson();
         String jsonContent = gson.toJson(productGroupDto);
 

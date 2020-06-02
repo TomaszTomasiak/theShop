@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("api/v1/carts")
 public class CartController {
     @Autowired
@@ -26,7 +27,6 @@ public class CartController {
 
     @Autowired
     private CartMapper mapper;
-
 
     private final Logger log = LoggerFactory.getLogger(CartController.class);
 
@@ -92,9 +92,6 @@ public class CartController {
         if(!service.exists(cartId)) {
             throw new CartExceptionNotFound(CartExceptionNotFound.ERR_CART_NOT_FOUND);
         }
-//        cart.setId(cartId);
-//        Cart cartUpdated = theShopService.addItemsToExistingCart(cart);
         return mapper.mapToCartDto(theShopService.updateItemsOnExistingCart(cart));
     }
 }
-

@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -17,17 +16,11 @@ import java.time.LocalDate;
 public class OrderDto implements Serializable {
 
     private Long id;
-
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate ordered;
-
     private String comments;
-
     private Long cartId;
-
     private Long userId;
-
     private BigDecimal totalValue;
-
     private boolean isCompleted;
 }

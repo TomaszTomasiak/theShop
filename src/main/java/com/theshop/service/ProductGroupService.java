@@ -6,13 +6,11 @@ import com.theshop.domain.Product;
 import com.theshop.domain.ProductGroup;
 import com.theshop.exception.NullArgumentException;
 import com.theshop.exception.ProductGroupException;
-import com.theshop.exception.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,7 +18,6 @@ import java.util.stream.Collectors;
 @Transactional
 @Service
 public class ProductGroupService {
-
 
     private final Logger log = LoggerFactory.getLogger(ProductGroupService.class);
 
@@ -64,8 +61,5 @@ public class ProductGroupService {
         if (productList.size() != 0) {
             throw new ProductGroupException(ProductGroupException.ERR_PRODUCTS_SIGNED_TO_GROUP);
         }
-
-
-
     }
 }

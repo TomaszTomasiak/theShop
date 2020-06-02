@@ -9,7 +9,6 @@ import com.theshop.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -37,7 +36,7 @@ public class EmailScheduler {
 
     @Scheduled(cron = "0 0 8 * * *")
     public void dailyMailToAdmin() {
-        //long ordersNumber = orderDao.count();
+
         List<Order> lastDayOrders = orderDao.findAll().stream()
                 .filter(o -> o.getOrdered().equals(LocalDate.now().minusDays(1L)))
                 .collect(Collectors.toList());
@@ -50,9 +49,9 @@ public class EmailScheduler {
 
         emailService.send(new Mail(adminConfig.getAdminMail(),
                 "Daily information about users and orders",
-                "Currently in database you have got: " + usersNumber + " user" + addS() + ", and noticed: " + numberOfNewUsers + " user" + addS() + " from yesterday.\n" +
+                "Currently in database you have got: " + usersNumber + " user" + addS() + ", and noticed: " + numberOfNewUsers +
+                        " user" + addS() + " from yesterday.\n" +
                         "Number of orders from previous day is: " + lastDayOrdersNumber + " with value: " + valueLastDayValue + " PLN"));
-
         numberOfUsers = usersNumber;
     }
 

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class NullArgumentException extends Exception {
 
     public static String ERR_ARGUMENTS_NULL = "Null argments were passed";
-
     public NullArgumentException(String message){
         super(message);
     }

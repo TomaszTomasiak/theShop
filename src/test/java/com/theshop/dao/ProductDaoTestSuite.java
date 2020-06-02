@@ -46,6 +46,5 @@ public class ProductDaoTestSuite {
         //CleanUp
         productDao.deleteById(productId);
         productGroupDao.deleteById(groupId);
-
     }
 }

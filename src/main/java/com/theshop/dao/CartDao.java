@@ -13,7 +13,5 @@ public interface CartDao extends CrudRepository<Cart, Long> {
 
     @Override
     List<Cart> findAll();
-
     Cart findCartById(Long id);
-
 }

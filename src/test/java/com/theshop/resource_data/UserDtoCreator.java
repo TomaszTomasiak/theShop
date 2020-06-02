@@ -38,6 +38,4 @@ public class UserDtoCreator {
                 .phoneNumber(UPDATED_PHONE)
                 .build();
     }
-
-
 }

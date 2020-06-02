@@ -69,18 +69,16 @@ public class ProductControllerTestSuite {
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].id", is(17)))
                 .andExpect(jsonPath("$[0].name", is(productDto.getName())))
-                .andExpect(jsonPath("$[0].price", is(productDto.getPrice()))
-                );
+                .andExpect(jsonPath("$[0].price", is(productDto.getPrice())));
     }
 
     @Test
     public void shouldGetProductWithIndicatedId() throws Exception {
         //Given
-
         when(productController.getProduct(ProductDtoCreator.PRODUCT_ID)).thenReturn(productDto);
 
         //When & Then
-        mockMvc.perform(get("/api/v1/products/"+productDto.getId()).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/v1/products/" + productDto.getId()).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("name", is(productDto.getName())))
                 .andExpect(jsonPath("description", is(productDto.getDescription())));
@@ -104,12 +102,11 @@ public class ProductControllerTestSuite {
         List<ProductDto> productDtos = new ArrayList<>();
         productDtos.add(productDto);
         when(productController.updateProductById(ArgumentMatchers.anyLong(), (ArgumentMatchers.any(ProductDto.class)))).thenReturn(updatedProductDto);
-
         Gson gson = new Gson();
         String jsonContent = gson.toJson(updatedProductDto);
 
         //When & Then
-        mockMvc.perform(put("/api/v1/products/"+productDto.getId())
+        mockMvc.perform(put("/api/v1/products/" + productDto.getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
@@ -121,9 +118,7 @@ public class ProductControllerTestSuite {
     @Test
     public void shouldCreateProduct() throws Exception {
         //Given
-
         when(productController.createProduct(ArgumentMatchers.any(ProductDto.class))).thenReturn(productDto);
-
         Gson gson = new Gson();
         String jsonContent = gson.toJson(productDto);
 

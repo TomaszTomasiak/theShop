@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -23,7 +22,6 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "product_id", unique = true)
     private Long id;
-
 
     @Column(name="name", unique = true)
     private String name;
@@ -50,7 +48,4 @@ public class Product {
             fetch = FetchType.LAZY)
     private List<Item> items = new ArrayList<>();
 
-//    public boolean isAvailable() {
-//        return available;
-//    }
 }

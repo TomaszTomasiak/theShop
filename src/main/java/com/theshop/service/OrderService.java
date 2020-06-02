@@ -44,7 +44,7 @@ public class OrderService {
         emailService.send(new Mail(
                 adminConfig.getAdminMail(),
                 "New order",
-                "Added new order with total value: " + createdOrder.getTotalValue() + "PLN"
+                "Added new order with total value: " + createdOrder.getTotalValue() + " PLN"
         ));
         return createdOrder;
     }
