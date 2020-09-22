@@ -92,8 +92,8 @@ public class CartControllerTestSuite {
     @Test
     public void schouldUpdateCart() throws Exception {
         //Given
-        List<CartDto> cartDtos = new ArrayList<>();
-        cartDtos.add(cartDto);
+//        List<CartDto> cartDtos = new ArrayList<>();
+//        cartDtos.add(cartDto);
         CartDto updatedCartDto= CartDtoCreator.updatedCartDtoCreator();
         when(cartController.updateCartById(ArgumentMatchers.anyLong(), (ArgumentMatchers.any(CartDto.class)))).thenReturn(updatedCartDto);
         Gson gson = new Gson();
@@ -121,4 +121,6 @@ public class CartControllerTestSuite {
                 .content(jsonContent))
                 .andExpect(jsonPath("$.id", is(3)));
     }
+
+
 }

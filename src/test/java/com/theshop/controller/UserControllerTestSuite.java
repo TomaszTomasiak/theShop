@@ -1,6 +1,8 @@
 package com.theshop.controller;
 
 import com.google.gson.Gson;
+import com.theshop.dao.UserDao;
+import com.theshop.domain.User;
 import com.theshop.domain.dto.UserDto;
 import com.theshop.resource_data.UserDtoCreator;
 import org.junit.Before;
@@ -13,8 +15,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
@@ -34,6 +40,7 @@ public class UserControllerTestSuite {
     UserController userController;
 
     private UserDto userDto;
+    private UserDao userDao;
 
     @Before
     public void initTest() {
@@ -133,5 +140,25 @@ public class UserControllerTestSuite {
                 .andExpect(jsonPath("$.id", is(5)))
                 .andExpect(jsonPath("$.phoneNumber", is(userDto.getPhoneNumber())))
                 .andExpect(jsonPath("$.lastName", is(userDto.getLastName())));
+    }
+
+    @Test
+    public void shouldNotCreateUserBecauseUserWithIdAlreadyExists() throws Exception {
+
+        userDto.setId(9L);
+
+        when(userController.createUser(ArgumentMatchers.any(UserDto.class))).thenReturn(userDto);
+
+        Gson gson = new Gson();
+        String jsonContent = gson.toJson(userDto);
+
+
+        mockMvc.perform(post("/api/v1/ecommercee/users")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonContent))
+                .andExpect(status().isNotFound());
+
+
+
     }
 }
