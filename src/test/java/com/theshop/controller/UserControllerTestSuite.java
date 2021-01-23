@@ -1,8 +1,6 @@
 package com.theshop.controller;
 
 import com.google.gson.Gson;
-import com.theshop.dao.UserDao;
-import com.theshop.domain.User;
 import com.theshop.domain.dto.UserDto;
 import com.theshop.resource_data.UserDtoCreator;
 import org.junit.Before;
@@ -16,16 +14,13 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -40,7 +35,6 @@ public class UserControllerTestSuite {
     UserController userController;
 
     private UserDto userDto;
-    private UserDao userDao;
 
     @Before
     public void initTest() {
@@ -157,8 +151,5 @@ public class UserControllerTestSuite {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonContent))
                 .andExpect(status().isNotFound());
-
-
-
     }
 }
